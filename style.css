@@ -1,10 +1,10 @@
-*{
+* {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-family: 'Inter';
 } 
-.text{
+.text {
   display: block;
   width: 800px;
   height: 300px;
@@ -13,7 +13,7 @@
   color: black;
   margin:30px auto;
 }
-.keyboard{
+.keyboard {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -23,7 +23,7 @@
   background-color: gray;
   margin: 20px auto;
 }
-.row{
+.row {
   display: flex;
   gap: 5px;
   width: 99%;
@@ -31,7 +31,7 @@
   margin: 0 auto;
   background-color: aqua;
 }
-.key{
+.key {
   width: 6%;
   background-color: rgba(143, 210, 192, 0.648);
 }
@@ -47,16 +47,37 @@
 }
 .row__backspace,
 .row__tab,
-.row__delete{
+.row__delete,
+.row__caps,
+.row__enter,
+.row__shift,
+.row__arrow, 
+.row__shift-right,
+.row__ctrl,
+.row__meta,
+.row__alt,
+.row__alt-right,
+.row__ctrl-right {
   background-color: rgba(25, 109, 87, 0.648);
 }
-.row__backspace{
+.row__backspace,
+.row__caps,
+.row__shift {
   width: 15%;
 }
-.row__tab{
+.row__tab {
   width: 8%;
 }
-.row__delete{
+.row__delete,
+.row__meta {
   width: 7%;
 }
+.row__enter,
+.row__shift-right {
+  width: 12%;
+}
+.row__space {
+  width: 49%;
+}
+
 
