@@ -540,9 +540,27 @@ span62.innerHTML = "▶";
 divElement62.append(span62);
 
 let divElement63 = document.createElement("div");
-divElement63.className = "key row__ctrl-right Ctrl";
+divElement63.className = "key row__ctrl-right ControlRight";
 divElement62.after(divElement63);
 let span63 = document.createElement("span")
 span63.className = "en";
 span63.innerHTML = "Ctrl";
 divElement63.append(span63);
+
+//add keydown
+const text = document.querySelector(".text");
+const keyboard = document.querySelector(".keyboard");
+const key = document.querySelectorAll(".key");
+
+    document.addEventListener("keydown",function(event){
+        let code=event.code;
+        for(let i=0; i<key.length; i=i+1){
+            if( key[i].getAttribute("class").includes(event.code)){
+                key[i].classList.add("active");
+                console.log(code);
+            }
+            
+            console.log(key[i].getAttribute("class"));
+        }
+        }) 
+

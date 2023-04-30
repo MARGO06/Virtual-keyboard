@@ -35,6 +35,9 @@
   width: 6%;
   background-color: rgba(143, 210, 192, 0.648);
 }
+.key.active {
+  background-color: rgba(212, 169, 113, 0.703);
+}
 .en{
   display: block;
   width: 100%;
