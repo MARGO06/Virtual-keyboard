@@ -552,15 +552,19 @@ const text = document.querySelector(".text");
 const keyboard = document.querySelector(".keyboard");
 const key = document.querySelectorAll(".key");
 
-    document.addEventListener("keydown",function(event){
-        let code=event.code;
-        for(let i=0; i<key.length; i=i+1){
-            if( key[i].getAttribute("class").includes(event.code)){
-                key[i].classList.add("active");
-                console.log(code);
+  document.addEventListener("keydown",function(event){
+      for(let i=0; i<key.length; i=i+1){
+          if( key[i].getAttribute("class").includes(event.code)){
+              key[i].classList.add("active");
             }
-            
-            console.log(key[i].getAttribute("class"));
         }
         }) 
+//add keyup
+        document.addEventListener("keyup",function(event){
+          for(let i=0; i<key.length; i=i+1){
+              if( key[i].getAttribute("class").includes(event.code)){
+                  key[i].classList.remove("active");
+                }
+            }
+            }) 
 
