@@ -547,6 +547,11 @@ span63.className = "en";
 span63.innerHTML = "Ctrl";
 divElement63.append(span63);
 
+let windows = document.createElement("h2");
+windows.className = "text2";
+windows.innerHTML = "Клавиатура создана в операционной системе Windows"
+document.body.append(windows);
+
 //add keydown
 const text = document.querySelector(".text");
 const keyboard = document.querySelector(".keyboard");
