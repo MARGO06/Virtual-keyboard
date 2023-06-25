@@ -8,38 +8,16 @@ let div = document.createElement("div");
 div.className = "keyboard";
 document.body.append(div);
 
-//create rows
+//create row
 let divRow = document.createElement("div");
 divRow.className = "row";
 div.append(divRow);
 
-/*
-let windows = document.createElement("h2");
-windows.className = "text2";
-windows.innerHTML = "Клавиатура создана в операционной системе Windows"
-document.body.append(windows);
+//create rowRu
+let divRowRU = document.createElement("div");
+divRowRU.className = "row2";
+div.append(divRowRU);
 
-//add keydown
-const text = document.querySelector(".text");
-const keyboard = document.querySelector(".keyboard");
-const key = document.querySelectorAll(".key");
-
-  document.addEventListener("keydown",function(event){
-      for(let i=0; i<key.length; i=i+1){
-          if( key[i].getAttribute("class").includes(event.code)){
-              key[i].classList.add("active");
-            }
-        }
-        }) 
-//add keyup
-        document.addEventListener("keyup",function(event){
-          for(let i=0; i<key.length; i=i+1){
-              if( key[i].getAttribute("class").includes(event.code)){
-                  key[i].classList.remove("active");
-                }
-            }
-            }) 
-*/
 //create letters and numbers (english)
 const elementRow1 = ["`","1","2","3","4","5","6","7","8","9","0","-","=","Backspace",
                     "Tab","q","w","e","r","t","y","u","i","o","p","[","]","\\","Del",
@@ -66,5 +44,118 @@ const codeRow1 = ["key Backquote","key Digit1","key Digit2","key Digit3","key Di
                         span.innerHTML = `${elementRow1[i]}`;
                         divElement.append(span);
                   }
+//create letters and numbers (russian)
+const elementRow2 = ["ё","1","2","3","4","5","6","7","8","9","0","-","=","Backspace",
+                    "Tab","й","ц","у","к","е","н","г","ш","щ","з","х","ъ","\\","Del",
+                    "CapsLock","ф","ы","в","а","п","р","о","л","д","ж","э","Enter",
+                    "Shift","я","ч","c","м","и","т","ь","б","ю","/","▲","Shift",
+                     "Ctrl","Win","Alt"," ","Alt","◀","▼","▶","Ctrl"];
+                   for(let i=0; i<elementRow2.length; i++){
+                      let divElement = document.createElement("div");
+                          divElement.className = `${codeRow1[i]}`;
+                          divRowRU.append(divElement);
+                          let spanRU = document.createElement("span")
+                          spanRU.className = "ru";
+                          spanRU.innerHTML = `${elementRow2[i]}`;
+                          divElement.append(spanRU);
+                    }
 
+
+//create press keys on a physical keyboard and a virtual keyboard
+let windows = document.createElement("h2");
+windows.className = "text2";
+windows.innerHTML = "Клавиатура создана в операционной системе Windows"
+document.body.append(windows);
+                  
+//add keydown
+const text = document.querySelector(".text");
+const keyboard = document.querySelector(".keyboard");
+const key = document.querySelectorAll(".key");
+                  
+document.addEventListener("keydown",function(event){
+  for(let i=0; i<key.length; i=i+1){
+      if( key[i].getAttribute("class").includes(event.code)){
+         key[i].classList.add("active");
+         //span.classList.add('active');
+      }
+  }
+}) 
+//add keyup
+document.addEventListener("keyup",function(event){
+  for(let i=0; i<key.length; i=i+1){
+    if( key[i].getAttribute("class").includes(event.code)){
+      key[i].classList.remove("active");
+    }
+  }
+}) 
+
+
+//change language keyboard
+let pressed = new Set();
+let ru = document.querySelectorAll(".ru");
+let en = document.querySelectorAll(".en");
+let row = document.querySelector(".row");
+let row2 = document.querySelector(".row2");
+
+//local storage
+function setLocalStorage(){
+ localStorage.setItem("lang",'en')
+}
+window.addEventListener('beforeunload', setLocalStorage)
+/*function getLocalStorage() {
+  const nameFromLS = localStorage.getItem('lang');
+  if (nameFromLS !== null) {
+    lang.en = nameFromLS;
+  }
+}
+window.addEventListener('load', getLocalStorage)*/
+
+//en->ru
+document.addEventListener("keydown",function(event){
+  pressed.add(event.code)
+    if(pressed.has("ShiftLeft")&&pressed.has("AltLeft")){
+      if(localStorage.getItem("lang")=='en'){
+          ru.forEach(rus => {
+            rus.classList.add("active")
+          });
+          row2.classList.add("active");
+          en.forEach(eng => {
+            eng.classList.add('hidden')
+          });
+          row.classList.add('hidden')
+          function setLocalStorage(){
+            localStorage.setItem("lang",'ru')
+           }
+           window.addEventListener('beforeunload', setLocalStorage)
+           function getLocalStorage() {
+            const nameFromLS = localStorage.getItem('lang');
+            if (nameFromLS !== null) {
+              lang.ru = nameFromLS;
+            }
+          }
+          window.addEventListener('load', getLocalStorage)
+          console.log('hello')
+    }
+    if(localStorage.getItem("lang")=='ru'){
+          ru.forEach(rus => {
+            rus.classList.toggle("active")
+          });
+          row2.classList.toggle("active");
+          en.forEach(eng => {
+            eng.classList.toggle('hidden')
+          });
+          row.classList.toggle('hidden')
+          console.log('hello')
+        }
+      }}
+    )
+      document.addEventListener("keyup",function(event){
+        pressed.delete(event.code);
+        console.log('hello')
+      })
+
+
+      
+   
+   
 
