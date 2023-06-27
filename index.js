@@ -66,6 +66,11 @@ let windows = document.createElement("h2");
 windows.className = "text2";
 windows.innerHTML = "Клавиатура создана в операционной системе Windows"
 document.body.append(windows);
+
+let windows2 = document.createElement("h2");
+windows2.className = "text2";
+windows2.innerHTML = "Для переключения языка коммбинация: левые Shift+Alt"
+document.body.append(windows2);
                   
 //add keydown
 const text = document.querySelector(".text");
@@ -96,25 +101,29 @@ let ru = document.querySelectorAll(".ru");
 let en = document.querySelectorAll(".en");
 let row = document.querySelector(".row");
 let row2 = document.querySelector(".row2");
+let spanElement = document.querySelectorAll('span');
+let lang;
 
 //local storage
-function setLocalStorage(){
- localStorage.setItem("lang",'en')
-}
-window.addEventListener('beforeunload', setLocalStorage)
-/*function getLocalStorage() {
-  const nameFromLS = localStorage.getItem('lang');
-  if (nameFromLS !== null) {
-    lang.en = nameFromLS;
+for(let i=0; i<spanElement.length; i=i+1){
+  if(spanElement[i].getAttribute("class").includes('en')){
+    window.addEventListener('beforeunload', localStorage.setItem("lang",'en'))
+    console.log('true')
   }
 }
-window.addEventListener('load', getLocalStorage)*/
+function getLocalStorage() {
+  const spanElement = localStorage.getItem('lang');
+  if (spanElement !== null) {
+    lang = spanElement;
+  }console.log("hhh")
+}
+window.addEventListener('load', getLocalStorage)
 
 //en->ru
 document.addEventListener("keydown",function(event){
   pressed.add(event.code)
     if(pressed.has("ShiftLeft")&&pressed.has("AltLeft")){
-      if(localStorage.getItem("lang")=='en'){
+      if( localStorage.getItem('lang')==='en'){
           ru.forEach(rus => {
             rus.classList.add("active")
           });
@@ -123,39 +132,36 @@ document.addEventListener("keydown",function(event){
             eng.classList.add('hidden')
           });
           row.classList.add('hidden')
-          function setLocalStorage(){
-            localStorage.setItem("lang",'ru')
-           }
-           window.addEventListener('beforeunload', setLocalStorage)
-           function getLocalStorage() {
-            const nameFromLS = localStorage.getItem('lang');
-            if (nameFromLS !== null) {
-              lang.ru = nameFromLS;
+          for(let i=0; i<spanElement.length; i=i+1){
+            if(spanElement[i].getAttribute("class").includes('ru')){
+              window.addEventListener('beforeunload', localStorage.setItem("lang",'ru'))
+              console.log('rue')
             }
           }
+          function getLocalStorage() {
+            const spanElement = localStorage.getItem('lang');
+            if (spanElement !== null) {
+              lang = spanElement;
+            }console.log("h")
+          }
           window.addEventListener('load', getLocalStorage)
-          console.log('hello')
+    }else{ru.forEach(rus => {
+      rus.classList.remove("active")
+    });
+    row2.classList.remove("active");
+    en.forEach(eng => {
+      eng.classList.remove('hidden')
+    });
+    row.classList.remove('hidden')
+    console.log('hello2')
+      localStorage.setItem("lang",'en')
     }
-    if(localStorage.getItem("lang")=='ru'){
-          ru.forEach(rus => {
-            rus.classList.toggle("active")
-          });
-          row2.classList.toggle("active");
-          en.forEach(eng => {
-            eng.classList.toggle('hidden')
-          });
-          row.classList.toggle('hidden')
-          console.log('hello')
-        }
-      }}
-    )
-      document.addEventListener("keyup",function(event){
-        pressed.delete(event.code);
-        console.log('hello')
-      })
-
-
-      
-   
+  }
+  })
+    document.addEventListener("keyup",function(event){
+      pressed.delete(event.code);
+      console.log('hello')
+    })
+    
    
 
