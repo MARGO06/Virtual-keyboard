@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'Inter';
+} 
+.text {
+  display: block;
+  width: 800px;
+  height: 300px;
+  padding: 10px;
+  font-size: 16px;
+  color: black;
+  margin:30px auto;
+}
+.keyboard {
+  display: flex;
+  width: 800px;
+  height: 300px;
+  padding: 5px;
+  background-color: rgba(179, 177, 177, 0.954);
+  margin: 20px auto;
+  border: 1px solid rgba(32, 31, 31, 0.954);
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 99%;
+  margin: 0 auto;
+}
+.key {
+  width: 6%;
+  background-color: rgba(143, 210, 192, 0.648);
+  border: 1px solid rgba(32, 31, 31, 0.954);
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+.key.active {
+  background-color: rgba(225, 221, 18, 0.982);
+}
+.en{
+  display:block;
+  
+  font-size: 20px;
+  font-weight: 500;
+  color: black;
+  text-align: center;
+  margin-top: 15px;
+}
+.row__backspace,
+.row__tab,
+.row__delete,
+.row__caps,
+.row__enter,
+.row__shift,
+.row__arrow,
+.row__arrow2, 
+.row__shift-right,
+.row__ctrl,
+.row__meta,
+.row__alt,
+.row__alt-right,
+.row__ctrl-right {
+  background-color: rgba(25, 109, 87, 0.648);
+}
+.row__backspace,
+.row__caps,
+.row__shift {
+  width: 15%;
+}
+.row__tab {
+  width: 8%;
+}
+.row__delete {
+  width: 7%;
+}
+.row__enter,
+.row__shift-right {
+  width: 14%;
+}
+.row__space {
+  width: 45.3%;
+  margin-bottom: 0px;
+}
+.text2{
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
+}
+.row__ctrl-right,
+.row__ctrl{
+  width: 7.5%;
+  margin-bottom: 0px;
+}
+.row__meta,
+.row__alt,
+.row__alt-right,
+.row__arrow2{
+  margin-bottom: 0px;
+}
+.row2,
+.ru{
+  display: none;
+}
+.row2.active{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 99%;
+  margin: 0 auto;
+}
+.ru.active{
+  display:block;
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  font-weight: 500;
+  color: black;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.en.hidden,
+.row.hidden{
+  display: none;
+}
