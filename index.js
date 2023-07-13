@@ -24,7 +24,11 @@ const elementRow1 = ["`","1","2","3","4","5","6","7","8","9","0","-","=","Backsp
                     "CapsLock","a","s","d","f","g","h","j","k","l",";","'","Enter",
                     "Shift","z","x","c","v","b","n","m",",",".","/","▲","Shift",
                      "Ctrl","Win","Alt"," ","Alt","◀","▼","▶","Ctrl"];
-
+const elementEn = ["`","1","2","3","4","5","6","7","8","9","0","-","=",
+                   "q","w","e","r","t","y","u","i","o","p","[","]","\\",
+                   "a","s","d","f","g","h","j","k","l",";","'",
+                   "z","x","c","v","b","n","m",",",".","/",
+                   " "]
 const codeRow1 = ["key Backquote","key Digit1","key Digit2","key Digit3","key Digit4","key Digit5","key Digit6",
                   "key Digit7","key Digit8","key Digit9","key Digit0","key Minus","key Equal","key row__backspace Backspace",
                   "key row__tab Tab","key KeyQ","key KeyW","key KeyE","key KeyR","key KeyT","key KeyY",
@@ -71,38 +75,9 @@ let windows2 = document.createElement("h2");
 windows2.className = "text2";
 windows2.innerHTML = "Для переключения языка коммбинация: левые Shift+Alt"
 document.body.append(windows2);
-                  
-//add keydown
-const text = document.querySelector(".text");
-const keyboard = document.querySelector(".keyboard");
-const key = document.querySelectorAll(".key");
-                  
-document.addEventListener("keydown",function(event){
-  for(let i=0; i<key.length; i=i+1){
-      if( key[i].getAttribute("class").includes(event.code)){
-         key[i].classList.add("active");
-         //span.classList.add('active');
-      }
-  }
-}) 
-//add keyup
-document.addEventListener("keyup",function(event){
-  for(let i=0; i<key.length; i=i+1){
-    if( key[i].getAttribute("class").includes(event.code)){
-      key[i].classList.remove("active");
-    }
-  }
-}) 
-
-
-//change language keyboard
-let pressed = new Set();
-let ru = document.querySelectorAll(".ru");
-let en = document.querySelectorAll(".en");
-let row = document.querySelector(".row");
-let row2 = document.querySelector(".row2");
-let spanElement = document.querySelectorAll('span');
 let lang;
+let spanElement = document.querySelectorAll('span');
+                  
 
 //local storage
 for(let i=0; i<spanElement.length; i=i+1){
@@ -118,6 +93,45 @@ function getLocalStorage() {
   }console.log("hhh")
 }
 window.addEventListener('load', getLocalStorage)
+//add keydown
+/*const text = document.querySelector(".text");
+const keyboard = document.querySelector(".keyboard");
+const key = document.querySelectorAll(".key");
+let en = document.querySelectorAll(".en");
+
+                  
+document.addEventListener("keydown",function(event){
+  for(let i=0; i<key.length; i=i+1){
+      if( key[i].getAttribute("class").includes(event.code)){
+         key[i].classList.add("active");
+         if(localStorage.getItem('lang')==='en'){
+            
+              textarea.value += key[i].textContent
+              console.log('k')
+            }
+          }
+         }
+        }
+         
+) 
+//add keyup
+document.addEventListener("keyup",function(event){
+  for(let i=0; i<key.length; i=i+1){
+    if( key[i].getAttribute("class").includes(event.code)){
+      key[i].classList.remove("active");
+    }
+  }
+}) 
+*/
+
+//change language keyboard
+let pressed = new Set();
+let ru = document.querySelectorAll(".ru");
+
+let row = document.querySelector(".row");
+let row2 = document.querySelector(".row2");
+
+
 
 //en->ru
 document.addEventListener("keydown",function(event){
@@ -163,5 +177,44 @@ document.addEventListener("keydown",function(event){
       console.log('hello')
     })
     
-   
+  /*  //add text to textarea
+    for(let i=0; i<key.length; i=i+1){
+    if(key[i].classList.contains('active')){
+      textarea.value += key[i].textContent
+      console.log('eee')
+    }
+  }*/
 
+
+  //add keydown
+const text = document.querySelector(".text");
+const keyboard = document.querySelector(".keyboard");
+const key = document.querySelectorAll(".key");
+let en = document.querySelectorAll(".en");
+
+                  
+document.addEventListener("keydown",function(event){
+  for(let i=0; i<key.length; i=i+1){
+      if( key[i].getAttribute("class").includes(event.code)){
+         key[i].classList.add("active");
+            }
+          }
+         }
+        
+         
+) 
+//add keyup
+document.addEventListener("keyup",function(event){
+  for(let i=0; i<key.length; i=i+1){
+    if( key[i].getAttribute("class").includes(event.code)){
+      key[i].classList.remove("active");
+    }
+  }
+}) 
+
+//event mouse
+document.querySelector('.keyboard').onclick = myClick;
+function myClick(){
+  for(let i=0; i<elementRow1.length; i=i+1){
+  document.querySelector(".text").innerHTML += elementRow1
+}}
